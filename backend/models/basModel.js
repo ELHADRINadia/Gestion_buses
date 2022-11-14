@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
 
 const basSchema = new mongoose.Schema({
-    Nombre_bas: {
-        type: String,
-        required: [true, 'Please enter the bus number'],
-        unique: true,
-    },
-    Name: {
+   Name: {
         type: String,
         required: [true, 'Please enter the bus name'],
+    },
+    places: {
+        type: Number,
+        min: 0,
+        max: 40,
+        required: [true, 'Please enter the number of places'],
     },
     date_arriver: {
         type: String,
@@ -20,22 +21,16 @@ const basSchema = new mongoose.Schema({
     },
     ville_arriver: {
         type: String,
-        required: [true, 'svp entrer date arriver'],
+        required: [true, 'svp entrer ville arriver'],
     },
     ville_depart: {
         type: String,
-        required: [true, 'svp entrer date depart'],
+        required: [true, 'svp entrer ville depart'],
     },
-    places: {
-        type: Number,
-        min: 0,
-        max: 40,
-        required: [true, 'Please enter the number of places'],
-    },
-    placesRéservées: {
-        type: Array,
-        default: [],
-    }
+    // placesRéservées: {
+    //     type: Array,
+    //     default: [],
+    // }
 
 })
 

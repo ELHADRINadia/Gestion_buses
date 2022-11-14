@@ -2,21 +2,35 @@ import React from "react";
 
 function NavBar() {
   return (
-<nav class="bg-[#31087B] shadow dark:bg-white">
-    <div class=" flex items-center justify-center p-6 text-white capitalize dark:text-gray-300">
-        <a href="/" class="text-gray-800 transition-colors duration-300 transform dark:text-gray-200 border-b-2 border-blue-500 mx-1.5 sm:mx-6">home</a>
-
-        <a href="/" class="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6">About</a>
-
-        <a href="/" class="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6">Reservation</a>
-
-        <a href="/" class="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6">Reclamation</a>
-
-        <a href="/Login" class="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6">Login</a>
-
-        <a href="/Register" class="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6">Register</a>
-    </div>
-</nav>
+    <nav class="flex items-center justify-between flex-wrap bg-indigo-800 p-6 fixed w-full z-50">
+      <div class="flex items-center flex-shrink-0 text-white mr-6">
+      <i class="fa fa-bus" aria-hidden="true"></i>
+        <span class="font-semibold text-xl tracking-tight">Suprator</span>
+      </div>
+      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto " id="navbar">
+        <div class="text-sm lg:flex-grow  text-center lg:text-right">
+          <a href="/" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-teal-100 mr-8 text-lg">
+          Home
+          </a>
+          <a href="/" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-teal-100 mr-8 text-lg">
+          About Us
+          </a>
+          <a href="/" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-teal-100 mr-8 text-lg">
+          Service
+          </a>
+          <a href="/" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-teal-100 text-lg">
+          Contact US
+          </a>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <a href="/Login" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-teal-100 mr-8 text-lg">
+          Login
+          </a>
+          <a href="/Register" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-teal-100 text-lg">
+          Register
+          </a>
+        </div>
+      </div>
+    </nav>
   );
 }
 export default NavBar;

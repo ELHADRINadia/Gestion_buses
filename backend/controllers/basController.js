@@ -7,24 +7,23 @@ const getbases = asyncHandler(async (req, res) => {
     });
 
 const createbas = async (req, res) => {
-    const {Nombre_bas, Name,date_arriver, date_depart,ville_arriver,ville_depart, places ,placesRéservées } = req.body;
-    if(!Nombre_bas || !Name || !places ||!date_arriver||!date_depart||!ville_arriver||!ville_depart ||placesRéservées) {
+    const {Name, places ,date_depart, date_arriver, ville_depart, ville_arriver } = req.body;
+    if(!Name || !places  || !date_depart || !date_arriver || !ville_depart || !ville_arriver) {
         res.status(400).json({ message:'text is required or place is not valid'});
     };
     const bus = await Bus.create({
-        Nombre_bas,
         Name,
-        date_arriver,
-        date_depart,
-        ville_arriver,
-        ville_depart,
         places,
-        placesRéservées,
+        date_depart,
+        date_arriver,
+        ville_depart,
+        ville_arriver,
+       
     });
     res.status(200).json(bus);
 };
 const updatebas = asyncHandler(async (req, res) => {
-    const {nombre_bas, Name,date_arriver, date_depart,ville_arriver,ville_depart, places ,placesRéservées} = req.body;
+    const {Name, places , date_depart, date_arriver, ville_depart, ville_arriver} = req.body;
     const bus = await Bus.findById(req.params.id);
     (!bus)
       ?  res.status(400)

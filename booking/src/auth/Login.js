@@ -6,17 +6,7 @@ function Login() {
     const [password, setPassword] = useState([])
     const navigate = useNavigate(); 
     useEffect(()=>{
-        const nadiafun = async () =>{
-      
-            console.log('awai') 
-         try{
-            const res = await fetch('api/users/get-all-users')
-         console.log(res.json()) 
-         }catch(error){
-            console.log(error)
-         }
-        }
-        nadiafun()
+       
     },[])
     async function login(){
       try{

@@ -1,39 +1,32 @@
-import { data } from 'autoprefixer';
-import {React, useState} from 'react'
+import {React,  useState ,useEffect} from 'react'
 import toast, { Toaster } from 'react-hot-toast';
 import {useNavigate} from 'react-router-dom';
-
-
-
 function Register() {
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [name, setName] = useState([])
+    const [email, setEmail] = useState([])
+    const [password, setPassword] = useState([])
     const navigate = useNavigate(); 
-   
-
-   
-    async function RegisterUser(event){
-        const newData = new FormData();
-        newData.append("name", data.name);
-        newData.append("email", data.email);
-        newData.append("password", data.password)
-
-    const response = await  fetch('http://localhost:6000/api/users/auth/signup', {
+    useEffect(()=>{
+       
+    },[])
+    async function RegisterUser(){
+      try{
+        const response = await  fetch('api/users/auth/signup', {
         method:'POST',
         headers:{
           'Content-Type' : 'application/json',
         },
-        body: JSON.stringify({
-          "name": data.name,
-          "email": data.email,
-          "password": data.password
-        }),
+        body: JSON.stringify({name,email,password}),
       })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-      })
+      if (response.status) {
+          navigate("/login");  
+      } else {
+        alert('Failed')
+        toast.error('Register failed!');
+      }
+    } catch (error) {
+        error(error.response);
+    }
     }
   return (
   <>
@@ -48,12 +41,12 @@ function Register() {
       }}
        class="px-5 py-7">
         <label class="font-semibold text-sm text-gray-600 pb-1 block">Name</label>
-        <input type="text" onChange={(e) => setName(e.target.value)} class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+        <input type="text" name="name" onChange={(e) => setName(e.target.value)} class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
         <label class="font-semibold text-sm text-gray-600 pb-1 block">E-mail</label>
-        <input type="email" onChange={(e) => setEmail(e.target.value)} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+        <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
         <label class="font-semibold text-sm text-gray-600 pb-1 block">Password</label>
-        <input type="password" onChange={(e) => setPassword(e.target.value)} class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
-        <button type="submit" class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
+        <input type="password" name="password" onChange={(e) => setPassword(e.target.value)} class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+        <button type="submit" class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block" onClick={RegisterUser}>
             <span class="inline-block mr-2">Register</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 inline-block">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />

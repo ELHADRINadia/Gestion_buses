@@ -1,30 +1,58 @@
 const Booking = require("../models/bookingModel");
 const Bus = require("../models/basModel");
 
-const createbooking = async (req, res) => {
-  try {
-    const newBooking = new Booking({
-      ...req.body, 
-      transactionId: "1234",
-      user: req.body.userId,
-    });
-    await newBooking.save();
-    const bus = await Bus.findById(req.body.bus); 
-    bus.placesRéservées = [...bus.placesRéservées, ...req.body.places]; 
-    await bus.save();
-    res.status(200).send({
-      message: "place booked successfully",
-      data: newBooking,
-      success: true,
-    });
-  } catch (error) {
-    res.status(500).send({
-      message: "Booking failed",
-      data: error,
-      success: false,
-    });
-  }
-};
+// const createbooking = async (req, res) => {
+//   try {
+//     const newBooking = new Booking({
+//       ...req.body, 
+//       transactionId: "1234",
+//       user: req.body.userId,
+//     });
+//     await newBooking.save();
+//     const bus = await Bus.findById(req.body.bus); 
+//     bus.placesRéservées = [...bus.placesRéservées, ...req.body.places]; 
+//     await bus.save();
+//     res.status(200).send({
+//       message: "place booked successfully",
+//       data: newBooking,
+//       success: true,
+//     });
+//   } catch (error) {
+//     res.status(500).send({
+//       message: "Booking failed",
+//       data: error,
+//       success: false,
+//     });
+//   }
+// };
+
+const createBooking =  (req, res) => {
+    const {place, bus, userId, ville_arriver, ville_depart,date_arriver,date_depart } = req.body
+    const data = new Booking({place, bus,userId, ville_arriver, ville_depart,date_arriver,date_depart });
+    data.save()
+    .then((booking) => {
+        Bus.findById(bus)
+        .then((bus) => {
+            bus.placesRéservées = [...bus.placesRéservées, ...place]; 
+            bus.save()
+            .then((bus) => {
+                res.status(200).send({
+                    message: "place booked successfully",
+                    data: booking,
+                    success: true,
+                  });
+            })
+        })
+    })
+    .catch((error) => {
+        res.status(500).send({
+            message: "Booking failed",
+            data: error,
+            success: false,
+          });
+    })
+  
+} 
 
 // get all bookings
 const GetAllBookings = async (req, res) => {
@@ -83,7 +111,7 @@ const AnnuleBooking = async (req, res) => {
   }
 };
 module.exports = {
-  createbooking,
+  createBooking,
   GetAllBookings,
   GetAllBookingsByUser,
   AnnuleBooking,

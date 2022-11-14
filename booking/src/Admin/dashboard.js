@@ -1,18 +1,19 @@
 import React from 'react';
-// import AddBooking from '../components/dashboard/AddBooking';
-import Displaybuses from '../Admin/bus/DisplayBuses';
+// import AddBooking from '../Admin/booking/AddBooking';
+// import Displaybuses from '../Admin/bus/DisplayBuses';
 import SideBar from '../components/SideBar';
-
+// import DisplayBooking from '../Admin/booking/DisplayBooking';
+// import DisplayUsers from '../Admin/users/DisplayUsers';
 
 const dashboard = () => {
   return (
     <div className='flex'>
-     <div className='h-screen'>
-    <SideBar/>
-    </div>
+     
+    
+     <SideBar/>
     <div className='flex justify-between w-4/5'>
-    <Displaybuses/>
-    {/* <AddBooking/> */}
+    {/* <AddBooking /> */}
+    {/* <Displaybuses /> */}
     </div>
     </div>
   )

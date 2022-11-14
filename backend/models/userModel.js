@@ -17,16 +17,6 @@ const userSchema = new mongoose.Schema({
     required: [true, "Please fill this field!"],
     minLength: 6
   },
-  // passwordConfirm: {
-  //   type: String,
-  //   required : [true, "Please confirm your password"],
-  //   validate: {
-  //     validator: function(el){
-  //       return el === this.password;
-  //     },
-  //     message : "Something went wrong!"
-  //   },
-  // },
   role: {
     type : String, 
     enum :  ["admin", "user"],
